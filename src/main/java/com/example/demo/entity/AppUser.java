@@ -1,21 +1,19 @@
-package entity;
+package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,14 +23,12 @@ public class User {
 
     private String passwordHash;
 
-    @OneToMany(mappedBy = "taskList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
-    private List<Task> taskList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Task> taskList = new ArrayList<>();
 
-    public User(String username, String password) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.passwordHash = hashPassword(password);
-        taskList = new ArrayList<>();
     }
 
     private String hashPassword(String password){

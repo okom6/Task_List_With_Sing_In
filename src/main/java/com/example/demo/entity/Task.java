@@ -1,13 +1,11 @@
-package entity;
+package com.example.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,22 +17,19 @@ public class Task {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "priority")
     private Priority priority;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "cathegory")
     private Cathegory cathegory;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "user")
-    private User user;
+    private AppUser appUser;
 
     private boolean isDone = false;
 
-    public Task(Priority priority, Cathegory cathegory, User user) {
+    public Task(Priority priority, Cathegory cathegory, AppUser appUser) {
         this.priority = priority;
         this.cathegory = cathegory;
-        this.user = user;
+        this.appUser = appUser;
     }
 }

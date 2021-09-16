@@ -1,15 +1,13 @@
-package entity;
+package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,8 +20,7 @@ public class Priority {
 
     private String name;
 
-    @OneToMany(mappedBy = "tasks", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     public Priority(String name) {
