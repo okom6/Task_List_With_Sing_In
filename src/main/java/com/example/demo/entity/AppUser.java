@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,17 +20,13 @@ public class AppUser {
 
     private String username;
 
-    private String passwordHash;
+    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> taskList = new ArrayList<>();
 
     public AppUser(String username, String password) {
         this.username = username;
-        this.passwordHash = hashPassword(password);
-    }
-
-    private String hashPassword(String password){
-        return password; //TODO: implement hashing
+        this.password = password;
     }
 }

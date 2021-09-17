@@ -25,11 +25,16 @@ public class Task {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private AppUser appUser;
 
-    private boolean isDone = false;
+    private String text;
 
-    public Task(Priority priority, Cathegory cathegory, AppUser appUser) {
+    public Task(Priority priority, Cathegory cathegory, AppUser appUser, String text) {
         this.priority = priority;
         this.cathegory = cathegory;
         this.appUser = appUser;
+        this.text = text;
+    }
+
+    public Task(String text) {
+        this.text = text;
     }
 }
