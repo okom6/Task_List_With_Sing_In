@@ -79,6 +79,7 @@ public class TaskService {
         task.setCathegory(cathegory);
         task.setPriority(priority);
         task.setText(text);
+        taskRepository.save(task);
     }
 
     public void deleteTask(Long id){

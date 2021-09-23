@@ -41,6 +41,7 @@ public class PriorityService{
                     .orElseThrow(() ->  new IllegalStateException(
                             String.format("Priority with id %s not found", id)));
             priority.setName(newName);
+            priorityRepository.save(priority);
         }
 
         public void deletePriority(Long id){

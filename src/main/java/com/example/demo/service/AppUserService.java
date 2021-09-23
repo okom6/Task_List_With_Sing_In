@@ -57,6 +57,7 @@ public class AppUserService {
 
             appUser.setPassword(hashedPassword);
         }
+        appUserRepository.save(appUser);
     }
 
     public void deleteAppUser(Long id){

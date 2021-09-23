@@ -41,6 +41,7 @@ public class CathegoryService {
                 .orElseThrow(() ->  new IllegalStateException(
                         String.format("Cathegory with id %s not found", id)));
         cathegory.setName(newName);
+        cathegoryRepository.save(cathegory);
     }
 
     public void deleteCathegory(Long id){
