@@ -46,7 +46,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
+                .formLogin();
+                    /*.loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/task/all", true)
+                    .passwordParameter("password")
+                    .usernameParameter("username");*/
+
+
+                /*.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();*/
 
                 /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and()
