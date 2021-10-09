@@ -5,6 +5,9 @@ import com.example.demo.entity.Priority;
 import com.example.demo.service.AppUserService;
 import com.example.demo.service.PriorityService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,11 @@ public class AppUserController {
     @GetMapping(path = "/all")
     public List<AppUser> getAllAppUsers(){
         return appUserService.getAllAppUsers();
+    }
+
+    @GetMapping(path = "/thisUser")
+    public String getThisUser(){
+        return appUserService.getThisUser();
     }
 
     @GetMapping(path = "/{id}")

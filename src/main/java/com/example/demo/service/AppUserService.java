@@ -6,6 +6,9 @@ import com.example.demo.repository.AppUserRepository;
 import com.example.demo.repository.PriorityRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,15 @@ public class AppUserService {
 
     public List<AppUser> getAllAppUsers(){
         return appUserRepository.findAll();
+    }
+
+    public String getThisUser(){
+        String currentUserName = "none";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        return currentUserName;
     }
 
     public AppUser getAppUserById(Long id){
